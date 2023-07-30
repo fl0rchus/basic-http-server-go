@@ -8,6 +8,13 @@ import (
 func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+
+		if r.Method != http.MethodGet{
+			w.WriteHeader(http.StatusMethodNotAllowed)
+			fmt.Fprintf(w, "Method not allowed")
+			return
+		}
+
 		fmt.Fprintf(w, "Hello")
 	})
 
